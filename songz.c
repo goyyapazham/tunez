@@ -16,13 +16,11 @@ song_node * insert_front( song_node *sn, char s[], char a[] ) {
 
   return new;
 }
-
 //insert new song to list alphabetically, return ptr to front of list
 song_node * insert( song_node *sn, char s[], char a[] ) {
   song_node *tmp = sn;
   return insert_ordered(tmp, s, a);
 }
-
 song_node * insert_ordered( song_node *sn, char s[], char a[] ) {
   
   //BASE CASE #1: list is empty
@@ -48,13 +46,18 @@ song_node * insert_ordered( song_node *sn, char s[], char a[] ) {
 
 
 // ================== PRINT  FXNS ==================
+//print entire list
 void print_list( song_node *sn ) {
-  printf("SONGS:\n");
+  printf("\nSONGS:");
+
+  song_node *tmp = sn;
   
-  while(sn) {
-    printf("%s - %s\n", sn->artist, sn->song);
-    sn = sn->next;
+  while(tmp != NULL) {
+    printf("\n%s - %s", tmp->artist, tmp->song);
+    tmp = tmp->next;
   }
+
+  printf("\n");
 }
 // ================== PRINT  FXNS ==================
 
@@ -68,7 +71,7 @@ song_node * find_Song(song_node *sn, char s[]) {
   
   //BASE CASE #1: list is empty
   if( !tmp )
-    printf("Song not found.\n");
+    printf("\nSong not found.");
 
   //BASE CASE #2: song found (cannot be optimized more than this, because list
   //              is sorted first by artist)
@@ -83,7 +86,6 @@ song_node * find_Song(song_node *sn, char s[]) {
   //if not found
   return 0;
 }
-
 //search list, & return ptr to, first song by specified artist
 song_node * find_Artist(song_node *sn, char a[]) {
 
@@ -91,12 +93,12 @@ song_node * find_Artist(song_node *sn, char a[]) {
 
   //BASE CASE #1: list is empty
   if( !tmp )
-    printf("Artist not found.\n");
+    printf("\nArtist not found.");
 
   //BASE CASE #2: recursively reached first existing artist ahead of me in ABC order
   //              without reaching my artist
   else if( strcmp(a, tmp->artist) < 0 )
-    printf("Artist not found.\n");
+    printf("\nArtist not found.");
 
   //BASE CASE #3: artist found
   else if( strcmp(a, tmp->artist) == 0 )
@@ -153,17 +155,12 @@ song_node * remove_song(song_node *sn, char s[], char a[]) {
     return sn;
   }
 
-  //printf("TMP\n");
-  //print_list(tmp);
-
   song_node *tmps = find_Song(tmp, s);
   if( !tmps ) {
     return sn;
   }
 
   if(tmp == tmps) {
-    //printf("TMP->NEXT\n");
-    //print_list(tmp->next);
     return tmp->next;
   }
 
@@ -188,7 +185,7 @@ song_node * free_list( song_node *sn ) {
   song_node *f = sn;
   while ( sn ) {
     sn = sn->next;
-    printf("freeing node: %s - %s\n", f->song, f->artist );
+    printf("freeing node: %s - %s\n", f->artist, f->song );
     free(f);
     f = sn;
   }

@@ -21,25 +21,25 @@ void add_song( char s[], char a[] ) {
 // ================== SEARCH FXNS ==================
 //print specified song, if it exists
 void find_song(char s[]) {
-  printf("looking for %s...\n", s);
+  printf("looking for %s...", s);
   song_node *key = find_Song(playlist, s);
   if(key)
-    printf("found %s - %s\n", key->artist, key->song);
-  printf("\n");
+    printf("\nfound %s - %s", key->artist, key->song);
+  printf("\n\n");
 }
 //print songs by specified artist, if it exists
 void find_artist(char a[]) {
-  printf("looking for %s...\n", a);
+  printf("looking for %s...", a);
   find_a(a, "found ");
 }
 void find_a(char a[], char f[]) {
   song_node *key = find_Artist(playlist, a);
   if(key)
     while(strcmp(a, key->artist) == 0) {
-      printf("%s%s - %s\n", f, key->artist, key->song);
+      printf("\n%s%s - %s", f, key->artist, key->song);
       key = key->next;
     }
-  printf("\n");
+  printf("\n\n");
 }
 //return ptr to first song by first artist beginning with specified letter
 song_node * find_l(char l) {
@@ -52,7 +52,7 @@ song_node * find_l(char l) {
     tmp = tmp->next;
   }
 
-  printf("Letter not found.\n");
+  printf("\nLetter not found.");
   return 0;
   
 }
@@ -63,38 +63,36 @@ song_node * find_l(char l) {
 // ================== PRINT  FXNS ==================
 //print all entries under a certain letter
 void print_letter( char l ) {
-  printf("%c list:\n", l);
+  printf("%c list:", l);
   song_node *tmp = find_l(l);
   while(tmp && strncmp(&l, tmp->artist, 1) == 0) {
-    printf("* %s - %s\n", tmp->artist, tmp->song);
+    printf("\n* %s - %s", tmp->artist, tmp->song);
     tmp = tmp->next;
   }
-  printf("\n");
+  printf("\n\n");
 }
 //print all entries from a certain artist
 void print_artist( char a[] ) {
-  printf("%s list:\n", a);
+  printf("%s list:", a);
   find_a(a, "* ");
 }
 //print entire list
 void print_library() {
   print_list(playlist);
-  printf("\n");
 }
 //print shuffled list
 void shuffle() {
   printf("shuffling playlist...\n");
-  song_node *tmp = (song_node *)malloc(sizeof(song_node *));
-  song_node *tmp2 = playlist;
-  int i=0;
-  while(tmp2) {
-    tmp = insert_front(tmp, tmp2->song, tmp2->artist);
-    tmp2 = tmp2->next;
-  }
+  song_node *tmp = playlist;
+  song_node *tmp2 = 0;
   while(tmp) {
-    song_node *rand = find_random(tmp);
+    tmp2 = insert_front(tmp2, tmp->song, tmp->artist);
+    tmp = tmp->next;
+  }
+  while(tmp2) {
+    song_node *rand = find_random(tmp2);
     printf("%s - %s\n", rand->artist, rand->song);
-    remove_song(tmp, rand->song, rand->artist);
+    tmp2 = remove_song(tmp2, rand->song, rand->artist);
   }
   printf("\n");
 }
@@ -106,12 +104,11 @@ void shuffle() {
 // ================== DELETE FXNS ==================
 //delete specified song
 void delete_song( char s[], char a[] ) {
-  printf("deleting %s - %s...\n", a, s);
+  printf("\ndeleting %s - %s...", a, s);
   playlist = remove_song(playlist, s, a);
-  printf("\n");
 }
 //delete entire library
 void delete_library() {
-  free_list(playlist);
+  playlist = free_list(playlist);
 }
 // ================== DELETE FXNS ==================

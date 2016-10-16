@@ -21,20 +21,23 @@ int main() {
   add_song("believe", "ozomatli");
   add_song("if i were a boy", "beyonce");
   add_song("dreams", "beck");
-  printf("\n");
   print_library();
+  printf("\n");
+
+  printf("==================================================================\n");
 
   //put the playlist to the test: is it /really/ spiffy?
-  printf("\n----------- TESTING FIND_SONG -----------\n");
+  printf("----------- TESTING FIND_SONG -----------\n");
   find_song("rhiannon");
   find_song("if i were a boy");
   find_song("freedom");
-  printf("\n----------- TESTING FIND_ARTIST -----------\n");
+  printf("----------- TESTING FIND_ARTIST -----------\n");
   find_artist("beyonce");
   find_artist("outkast");
   find_artist("the beatles");
-  printf("\n");
 
+  printf("==================================================================\n");
+  
   //testing print fxns
   printf("----------- TESTING PRINT_LETTER -----------\n");
   print_letter('b');
@@ -50,16 +53,21 @@ int main() {
   shuffle();
   shuffle();
   shuffle();
-  printf("\n");
 
+  printf("==================================================================\n");
+  
   //testing delete fxns
-  printf("----------- TESTING DELETE_SONG -----------\n");
+  printf("----------- TESTING DELETE_SONG -----------");
   delete_song("sorry", "beyonce");
   print_library();
   delete_song("dreams", "beck");
   print_library();
   delete_song("hello", "adele");
   print_library();
+  printf("\n----------- TESTING DELETE_LIBRARY -----------");
+  print_library();
   printf("\n");
+  delete_library();
+  print_library();
   
 }

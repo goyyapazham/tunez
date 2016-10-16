@@ -18,125 +18,115 @@ int main() {
   //TESTING INSERT
   printf("--------------- TESTING INSERT ---------------\n");
 
-  printf("ADDING BEYONCE - FORMATION...\n");
+  printf("adding beyonce - formation...\n");
   list = insert(list, "formation", "beyonce");
   
-  printf("ADDING OUTKAST - HEY YA...\n");
+  printf("adding outkast - hey ya...\n");
   list = insert(list, "hey ya", "outkast");
   
-  printf("ADDING BEYONCE - FREEDOM...\n");
+  printf("adding beyonce - freedom...\n");
   list = insert(list, "freedom", "beyonce");
 
-  printf("ADDING MANU CHAO - CLANDESTINO...\n");
+  printf("adding manu chao - clandestino...\n");
   list = insert(list, "clandestino", "manu chao");
   
-  printf("ADDING BECK - WOW...\n");
+  printf("adding beck - wow...\n");
   list = insert(list, "wow", "beck");
 
-  printf("ADDING ZEBDA - TOUT SEMBLE SI...\n");
+  printf("adding zebda - tout semble si...\n");
   list = insert(list, "tout semble si", "zebda");
 
-  printf("ADDING ABBA - FERNANDO...\n");
+  printf("adding abba - fernando...\n");
   list = insert(list, "fernando", "abba");
 
-  printf("ADDING ABBA - SOS...\n");
+  printf("adding abba - sos...\n");
   list = insert(list, "sos", "abba");
 
-  printf("ADDING NINA SIMONE - SINNERMAN...\n");
+  printf("adding nina simone - sinnerman...\n");
   list = insert(list, "sinnerman", "nina simone");
-
-  printf("\n");
+  
   print_list(list);
-  printf("\n");
 
   //TESTING FIND_ARTIST
-  printf("\n----------- TESTING FIND_ARTIST -----------\n");
+  printf("\n----------- TESTING FIND_ARTIST -----------");
 
-  printf("\nSEARCHING FOR ABBA...\n");
+  printf("\nsearching for abba...");
   artist_search = find_Artist(list, "abba");
   print_list(artist_search);
   
-  printf("SEARCHING FOR NINA SIMONE...\n");
+  printf("\nsearching for nina simone...");
   artist_search = find_Artist(list, "nina simone");
   print_list(artist_search);
 
-  printf("\nSEARCHING FOR RIHANNA...\n");
+  printf("\nsearching for rihanna...");
   artist_search = find_Artist(list, "rihanna");
   print_list(artist_search);
 
-  printf("\nSEARCHING FOR BEYONCE...\n");
+  printf("\nsearching for beyonce...");
   artist_search = find_Artist(list, "beyonce");
   print_list(artist_search);
-
-  printf("\n");
 
   //TESTING FIND_SONG
   printf("\n----------- TESTING FIND_SONG -----------\n");
 
-  printf("SEARCHING FOR FORMATION...\n");
+  printf("searching for formation...");
   song_search = find_Song(list, "formation");
   print_list(song_search);
   
-  printf("\nSEARCHING FOR CLANDESTINO...\n");
+  printf("\nsearching for clandestino...");
   song_search = find_Song(list, "clandestino");
   print_list(song_search);
 
-  printf("\nSEARCHING FOR HEY JUDE...\n");
+  printf("\nsearching for hey jude...");
   song_search = find_Song(list, "hey jude");
   print_list(song_search);
 
-  printf("\nSEARCHING FOR HEY YA...\n");
+  printf("\nsearching for hey ya...");
   song_search = find_Song(list, "hey ya");
   print_list(song_search);
-
-  printf("\n");
 
   //TESTING FIND_RANDOM
   printf("\n----------- TESTING FIND_RANDOM -----------\n");
 
-  printf("SEARCHING FOR RANDOM...\n");
+  printf("searching for random...");
   rand_search = find_random(list);
   print_list(rand_search);
   
-  printf("\nSEARCHING FOR RANDOM...\n");
+  printf("\nsearching for random...");
   rand_search = find_random(list);
   print_list(rand_search);
   
-  printf("\nSEARCHING FOR RANDOM...\n");
+  printf("\nsearching for random...");
   rand_search = find_random(list);
   print_list(rand_search);
   
-  printf("\nSEARCHING FOR RANDOM...\n");
+  printf("\nsearching for random...");
   rand_search = find_random(list);
   print_list(rand_search);
-
-  printf("\n");
 
   //TESTING REMOVE_SONG
   printf("\n----------- TESTING REMOVE_SONG -----------\n");
 
-  printf("REMOVING ABBA - FERNANDO...\n");
+  printf("removing abba - fernando...");
   list = remove_song(list, "fernando", "abba");
   print_list(list);
 
-  printf("\nREMOVING MANU CHAO - CLANDESTINO...\n");
+  printf("\nremoving manu chao - clandestino...");
   list = remove_song(list, "clandestino", "manu chao");
   print_list(list);
 
-  printf("\nREMOVING ZEBDA - TOUT SEMBLE SI...\n");
+  printf("\nremoving zebda - tout semble si...");
   list = remove_song(list, "tout semble si", "zebda");
   print_list(list);
 
-  printf("\nREMOVING ADELE - HELLO...\n");
+  printf("\nremoving adele - hello...");
   list = remove_song(list, "hello", "adele");
   print_list(list);
-
-  printf("\n");
   
   //TESTING FREE_LIST
-  printf("\n------------- TESTING  FREE_LIST -------------\n");
-  free_list(list);
-  //print_list(list); //<-- list not actually freeing??
-  
-  return 0;
+  printf("\n------------- TESTING  FREE_LIST -------------");
+  print_list(list);
+  printf("\n");
+  list = free_list(list);
+  print_list(list);
 }
