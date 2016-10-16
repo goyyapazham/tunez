@@ -6,8 +6,8 @@ all: songz.o playlist.o ptest.o
 songz.o: songz.c songz.h
 	$(GCC) -c songz.c
 
-#ttest.o: ttest.c songz.h
-#	$(GCC) -c ttest.c
+ttest.o: ttest.c songz.h
+	$(GCC) -c ttest.c
 
 playlist.o: playlist.c playlist.h
 	$(GCC) -c playlist.c

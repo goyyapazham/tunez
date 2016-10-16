@@ -21,6 +21,7 @@ song_node * find_Song(song_node *list, char song[]);
 //search list, & return ptr to, first song by specified artist
 song_node * find_Artist(song_node *list, char artist[]);
 //return ptr to random song in list
+int len(song_node *list); //helper fxn for find_random
 song_node * find_random(song_node *list);
 
 // ================== REMOVE FXNS ==================

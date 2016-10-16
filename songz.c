@@ -110,7 +110,6 @@ song_node * find_Artist(song_node *sn, char a[]) {
   return 0;
   
 }
-
 //return length of list (needed for find_random)
 int len(song_node *sn) {
   
@@ -154,9 +153,18 @@ song_node * remove_song(song_node *sn, char s[], char a[]) {
     return sn;
   }
 
+  //printf("TMP\n");
+  //print_list(tmp);
+
   song_node *tmps = find_Song(tmp, s);
   if( !tmps ) {
     return sn;
+  }
+
+  if(tmp == tmps) {
+    //printf("TMP->NEXT\n");
+    //print_list(tmp->next);
+    return tmp->next;
   }
 
   song_node *prv = 0;
@@ -165,6 +173,7 @@ song_node * remove_song(song_node *sn, char s[], char a[]) {
     tmp = tmp->next;
   }
   prv->next = tmps->next;
+  free(tmp);
   
   return sn;
 }

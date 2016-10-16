@@ -115,8 +115,8 @@ int main() {
   //TESTING REMOVE_SONG
   printf("\n----------- TESTING REMOVE_SONG -----------\n");
 
-  printf("REMOVING ABBA - SOS...\n");
-  list = remove_song(list, "sos", "abba");
+  printf("REMOVING ABBA - FERNANDO...\n");
+  list = remove_song(list, "fernando", "abba");
   print_list(list);
 
   printf("\nREMOVING MANU CHAO - CLANDESTINO...\n");
