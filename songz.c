@@ -18,40 +18,47 @@ song_node * insert_front( song_node *sn, char s[], char a[] ) {
 }
 
 //insert new song to list alphabetically, return ptr to front of list
-song_node * insert_ordered( song_node *sn, char s[], char a[] ) {
-
+song_node * insert( song_node *sn, char s[], char a[] ) {
   song_node *tmp = sn;
+  return insert_ordered(tmp, s, a);
+}
 
-  //CASE #1: list is empty
-  if( !tmp )
+song_node * insert_ordered( song_node *sn, char s[], char a[] ) {
+  
+  //BASE CASE #1: list is empty
+  if( !sn )
     return insert_front(sn, s, a);
-
-  //CASE #2: recursively reached first existing artist ahead of me in ABC order
-  if( strcmp(a, tmp->artist) < 0 )
-    return insert_front(tmp, s, a);
-
-  //CASE #3: recursively reached my artist, first existing song ahead of me in ABC order
-  if( strcmp(a, tmp->artist) == 0 && strcmp(s, tmp->song) < 0 )
-    return insert_front(tmp, s, a);
-
+  
+  //BASE CASE #2: recursively reached artist ahead of me in ABC order
+  if( strcmp(a, sn->artist) < 0 )
+    return insert_front(sn, s, a);
+  
+  //BASE CASE #3: recursively reached my artist, song ahead of me in ABC order
+  if( strcmp(a, sn->artist) == 0 && strcmp(s, sn->song) < 0 )
+    return insert_front(sn, s, a);
+  
   //RECURSIVE CALL: call fxn on next node
   else
-    tmp->next = insert_ordered(tmp->next, s, a);
-
+    sn->next = insert(sn->next, s, a);
+  
   return sn;
 }
 // ================== INSERT FXNS ==================
 
+
+
 // ================== PRINT  FXNS ==================
 void print_list( song_node *sn ) {
+  printf("SONGS:\n");
   
   while(sn) {
     printf("%s - %s\n", sn->artist, sn->song);
     sn = sn->next;
   }
-  
 }
 // ================== PRINT  FXNS ==================
+
+
 
 // ================== SEARCH FXNS ==================
 //search list, & return ptr to, first song w/ specified name
@@ -117,7 +124,6 @@ int len(song_node *sn) {
   return i;
   
 }
-
 //return ptr to random song in list
 song_node * find_random(song_node *sn) {
 
@@ -136,41 +142,48 @@ song_node * find_random(song_node *sn) {
 
 // ================== SEARCH FXNS ==================
 
+
+
+
 // ================== REMOVE FXNS ==================
 //remove specified song from list, return ptr to front of list
 song_node * remove_song(song_node *sn, char s[], char a[]) {
 
   song_node *tmp = sn;
-  song_node *tmpa = find_artist(tmp, a);
-  song_node *tmps = find_song(tmpa, s);
-
-  if( !tmp || !tmps || tmp == tmps )
-    return tmp;
-
-  while(tmp) {
-    if( tmp == tmps ) {
-      *tmp = *(tmps->next);
-      return sn;
-    }
-    tmp = tmp->next;
+  if( !tmp ) {
+    return sn;
   }
 
-  return 0;
-  
-}
-  // ================== REMOVE FXNS ==================
+  song_node *tmps = find_song(tmp, s);
+  if( !tmps ) {
+    return sn;
+  }
 
-  // ================== FREE   FXNS ==================
-  song_node * free_list( song_node *sn ) {
+  song_node *prv = 0;
+  while(tmp->next && tmp != tmps) {
+    prv = tmp;
+    tmp = tmp->next;
+  }
+  prv->next = tmps->next;
+  
+  return sn;
+}
+// ================== REMOVE FXNS ==================
+
+
+
+
+// ================== FREE   FXNS ==================
+song_node * free_list( song_node *sn ) {
 
   song_node *f = sn;
   while ( sn ) {
-  sn = sn->next;
-  printf("freeing node: %s - %s\n", f->song, f->artist );
-  free(f);
-  f = sn;    
-}
+    sn = sn->next;
+    printf("freeing node: %s - %s\n", f->song, f->artist );
+    free(f);
+    f = sn;
+  }
+
   return sn;
-  
 }
-  // ================== FREE   FXNS ==================
+// ================== FREE   FXNS ==================

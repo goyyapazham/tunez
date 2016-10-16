@@ -8,6 +8,7 @@ typedef struct song_node {
 //insert new song to front of list, return ptr to front of list
 song_node * insert_front(song_node *list, char song[], char artist[]);
 //insert new song to list alphabetically, return ptr to front of list
+song_node * insert(song_node *list, char song[], char artist[]); //wrapper fxn
 song_node * insert_ordered(song_node *list, char song[], char artist[]);
 
 // ================== PRINT  FXNS ==================
