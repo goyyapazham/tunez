@@ -62,7 +62,7 @@ void print_list( song_node *sn ) {
 
 // ================== SEARCH FXNS ==================
 //search list, & return ptr to, first song w/ specified name
-song_node * find_song(song_node *sn, char s[]) {
+song_node * find_Song(song_node *sn, char s[]) {
   
   song_node *tmp = sn;
   
@@ -78,14 +78,14 @@ song_node * find_song(song_node *sn, char s[]) {
 
   //RECURSIVE CALL: test next node
   else
-    return find_song(tmp->next, s);
+    return find_Song(tmp->next, s);
 
   //if not found
   return 0;
 }
 
 //search list, & return ptr to, first song by specified artist
-song_node * find_artist(song_node *sn, char a[]) {
+song_node * find_Artist(song_node *sn, char a[]) {
 
   song_node *tmp = sn;
 
@@ -104,7 +104,7 @@ song_node * find_artist(song_node *sn, char a[]) {
 
   //RECURSIVE CALL: test next node
   else
-    return find_artist(tmp->next, a);
+    return find_Artist(tmp->next, a);
 
   //if not found
   return 0;
@@ -154,7 +154,7 @@ song_node * remove_song(song_node *sn, char s[], char a[]) {
     return sn;
   }
 
-  song_node *tmps = find_song(tmp, s);
+  song_node *tmps = find_Song(tmp, s);
   if( !tmps ) {
     return sn;
   }

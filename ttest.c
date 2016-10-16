@@ -44,45 +44,52 @@ int main() {
 
   printf("ADDING NINA SIMONE - SINNERMAN...\n");
   list = insert(list, "sinnerman", "nina simone");
+
+  printf("\n");
   print_list(list);
+  printf("\n");
 
   //TESTING FIND_ARTIST
   printf("\n----------- TESTING FIND_ARTIST -----------\n");
 
   printf("\nSEARCHING FOR ABBA...\n");
-  artist_search = find_artist(list, "abba");
+  artist_search = find_Artist(list, "abba");
   print_list(artist_search);
   
   printf("SEARCHING FOR NINA SIMONE...\n");
-  artist_search = find_artist(list, "nina simone");
+  artist_search = find_Artist(list, "nina simone");
   print_list(artist_search);
 
   printf("\nSEARCHING FOR RIHANNA...\n");
-  artist_search = find_artist(list, "rihanna");
+  artist_search = find_Artist(list, "rihanna");
   print_list(artist_search);
 
   printf("\nSEARCHING FOR BEYONCE...\n");
-  artist_search = find_artist(list, "beyonce");
+  artist_search = find_Artist(list, "beyonce");
   print_list(artist_search);
+
+  printf("\n");
 
   //TESTING FIND_SONG
   printf("\n----------- TESTING FIND_SONG -----------\n");
 
   printf("SEARCHING FOR FORMATION...\n");
-  song_search = find_song(list, "formation");
+  song_search = find_Song(list, "formation");
   print_list(song_search);
   
   printf("\nSEARCHING FOR CLANDESTINO...\n");
-  song_search = find_song(list, "clandestino");
+  song_search = find_Song(list, "clandestino");
   print_list(song_search);
 
   printf("\nSEARCHING FOR HEY JUDE...\n");
-  song_search = find_song(list, "hey jude");
+  song_search = find_Song(list, "hey jude");
   print_list(song_search);
 
   printf("\nSEARCHING FOR HEY YA...\n");
-  song_search = find_song(list, "hey ya");
+  song_search = find_Song(list, "hey ya");
   print_list(song_search);
+
+  printf("\n");
 
   //TESTING FIND_RANDOM
   printf("\n----------- TESTING FIND_RANDOM -----------\n");
@@ -103,6 +110,8 @@ int main() {
   rand_search = find_random(list);
   print_list(rand_search);
 
+  printf("\n");
+
   //TESTING REMOVE_SONG
   printf("\n----------- TESTING REMOVE_SONG -----------\n");
 
@@ -121,6 +130,8 @@ int main() {
   printf("\nREMOVING ADELE - HELLO...\n");
   list = remove_song(list, "hello", "adele");
   print_list(list);
+
+  printf("\n");
   
   //TESTING FREE_LIST
   printf("\n------------- TESTING  FREE_LIST -------------\n");
