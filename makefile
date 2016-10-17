@@ -2,16 +2,16 @@ GCC = gcc -g
 
 all: stest ptest
 
-stest: songz.o playlist.o stest.o
-	$(GCC) songz.o playlist.o stest.o -o stest
+stest: songlist.o playlist.o stest.o
+	$(GCC) songlist.o playlist.o stest.o -o stest
 
-ptest: songz.o playlist.o ptest.o
-	$(GCC) songz.o playlist.o ptest.o -o ptest
+ptest: songlist.o playlist.o ptest.o
+	$(GCC) songlist.o playlist.o ptest.o -o ptest
 
-songz.o: songz.c songz.h
-	$(GCC) -c songz.c
+songlist.o: songlist.c songlist.h
+	$(GCC) -c songlist.c
 
-stest.o: stest.c songz.h
+stest.o: stest.c songlist.h
 	$(GCC) -c stest.c
 
 playlist.o: playlist.c playlist.h

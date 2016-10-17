@@ -6,14 +6,14 @@
 
 int main() {
 
+  //INITIALIZE PSEUDO-RANDOM NUMBER GENERATOR
+  srand(time(NULL));
+
   //INITIALIZE LISTS FOR TESTING
   song_node *list = 0;
   song_node *artist_search = 0;
   song_node *song_search = 0;
   song_node *rand_search = 0;
-
-  //INITIALIZE PSEUDO-RANDOM NUMBER GENERATOR
-  srand(time(NULL));
 
   //TESTING INSERT
   printf("--------------- TESTING INSERT ---------------\n");

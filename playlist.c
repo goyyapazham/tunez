@@ -43,15 +43,12 @@ void find_a(char a[], char f[]) {
 }
 //return ptr to first song by first artist beginning with specified letter
 song_node * find_l(char l) {
-  
   song_node *tmp = playlist;
-
   while( tmp->next ) {
     if( strncmp(&l, tmp->artist, 1) == 0 )
       return tmp;
     tmp = tmp->next;
   }
-
   printf("\nLetter not found.");
   return 0;
   

@@ -8,7 +8,6 @@ int main() {
 
   srand(time(NULL));
 
-  //1 spiffy playlist coming right up...
   printf("\n----------- TESTING ADD_SONG -----------\n");
   add_song("formation", "beyonce");
   add_song("wow", "beck");
@@ -26,7 +25,6 @@ int main() {
 
   printf("==================================================================\n");
 
-  //put the playlist to the test: is it /really/ spiffy?
   printf("----------- TESTING FIND_SONG -----------\n");
   find_song("rhiannon");
   find_song("if i were a boy");
@@ -38,7 +36,6 @@ int main() {
 
   printf("==================================================================\n");
   
-  //testing print fxns
   printf("----------- TESTING PRINT_LETTER -----------\n");
   print_letter('b');
   print_letter('o');
@@ -56,7 +53,6 @@ int main() {
 
   printf("==================================================================\n");
   
-  //testing delete fxns
   printf("----------- TESTING DELETE_SONG -----------");
   delete_song("sorry", "beyonce");
   print_library();
