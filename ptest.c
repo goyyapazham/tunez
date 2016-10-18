@@ -8,7 +8,8 @@ int main() {
 
   srand(time(NULL));
 
-  printf("\n----------- TESTING ADD_SONG -----------\n");
+  //TESTING ADD_SONG
+  printf("----------- TESTING ADD_SONG -----------\n");
   add_song("formation", "beyonce");
   add_song("wow", "beck");
   add_song("hey ya", "outkast");
@@ -23,19 +24,25 @@ int main() {
   print_library();
   printf("\n");
 
-  printf("==================================================================\n");
-
+  /*
+  //TESTING FIND FXNS
   printf("----------- TESTING FIND_SONG -----------\n");
+  printf("looking for rhiannon...");
   find_song("rhiannon");
+  printf("\nlooking for if i were a boy...");
   find_song("if i were a boy");
+  printf("\nlooking for freedom...");
   find_song("freedom");
-  printf("----------- TESTING FIND_ARTIST -----------\n");
+  printf("\n----------- TESTING FIND_ARTIST -----------\n");
+  printf("looking for beyonce...");
   find_artist("beyonce");
+  printf("\nlooking for outkast...");
   find_artist("outkast");
+  printf("\nlooking for the beatles...");
   find_artist("the beatles");
-
-  printf("==================================================================\n");
-  
+  */
+    
+  //TESTING PRINT FXNS
   printf("----------- TESTING PRINT_LETTER -----------\n");
   print_letter('b');
   print_letter('o');
@@ -51,19 +58,17 @@ int main() {
   shuffle();
   shuffle();
 
-  printf("==================================================================\n");
-  
+  //TESTING DELETE FXNS
   printf("----------- TESTING DELETE_SONG -----------");
+  print_library();
   delete_song("sorry", "beyonce");
-  print_library();
   delete_song("dreams", "beck");
-  print_library();
   delete_song("hello", "adele");
-  print_library();
+  printf("\n");
   printf("\n----------- TESTING DELETE_LIBRARY -----------");
   print_library();
-  printf("\n");
+  printf("\n\n");
   delete_library();
   print_library();
-  
+  printf("\n");
 }

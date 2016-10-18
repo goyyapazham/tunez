@@ -13,11 +13,12 @@ song_node * insert_ordered(song_node *list, char song[], char artist[]);//DONE
 
 // ================== PRINT  FXNS ==================
 //print entire list
+void print(song_node *list);//wrapper fxn, DONE
 void print_list(song_node *list);//DONE
 
 // ================== SEARCH FXNS ==================
 //search list, & return ptr to, specified song
-song_node * find_Song(song_node *list, char song[]);//DONE
+song_node * find_Song(song_node *list, char song[], char err[]);//DONE
 //search list, & return ptr to, first song by specified artist
 song_node * find_Artist(song_node *list, char artist[]);//DONE
 //return ptr to random song in list

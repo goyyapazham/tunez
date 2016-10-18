@@ -1,13 +1,14 @@
+#include "songlist.h"
+
 // ================== ADD    FXNS ==================
 //add song to library in correct order
 void add_song( char song[], char artist[] ); //DONE
 
 // ================== SEARCH FXNS ==================
 //return ptr to specified song
-void find_song(char song[]); //DONE
+song_node * find_song(char song[]); //DONE
 //return ptr to first song by specified artist
-void find_artist(char artist[]); //wrapper, done
-void find_a(char artist[], char filler[]); //to avoid redundancy w/ print_artist, DONE
+song_node * find_artist(char artist[]); //DONE
 
 // ================== PRINT  FXNS ==================
 //print all entries under a certain letter

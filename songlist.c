@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "songz.h"
+#include "songlist.h"
 
 // ================== INSERT FXNS ==================
 //insert new song to front of list, return ptr to front of list
@@ -46,18 +46,21 @@ song_node * insert_ordered( song_node *sn, char s[], char a[] ) {
 
 
 // ================== PRINT  FXNS ==================
+//print entire list (wrapper)
+void print( song_node *sn ) {
+  print_list(sn);
+  printf("\n");
+}
 //print entire list
 void print_list( song_node *sn ) {
-  printf("\nSONGS:");
 
   song_node *tmp = sn;
   
   while(tmp != NULL) {
-    printf("\n%s - %s", tmp->artist, tmp->song);
+    printf("\n* %s - %s", tmp->artist, tmp->song);
     tmp = tmp->next;
   }
-
-  printf("\n");
+  
 }
 // ================== PRINT  FXNS ==================
 
@@ -65,13 +68,13 @@ void print_list( song_node *sn ) {
 
 // ================== SEARCH FXNS ==================
 //search list, & return ptr to, first song w/ specified name
-song_node * find_Song(song_node *sn, char s[]) {
+song_node * find_Song(song_node *sn, char s[], char err[]) {
   
   song_node *tmp = sn;
   
   //BASE CASE #1: list is empty
   if( !tmp )
-    printf("\nSong not found.");
+    printf("%s", err);
 
   //BASE CASE #2: song found (cannot be optimized more than this, because list
   //              is sorted first by artist)
@@ -81,7 +84,7 @@ song_node * find_Song(song_node *sn, char s[]) {
 
   //RECURSIVE CALL: test next node
   else
-    return find_Song(tmp->next, s);
+    return find_Song(tmp->next, s, err);
 
   //if not found
   return 0;
@@ -155,7 +158,7 @@ song_node * remove_song(song_node *sn, char s[], char a[]) {
     return sn;
   }
 
-  song_node *tmps = find_Song(tmp, s);
+  song_node *tmps = find_Song(tmp, s, "\nSong not found.");
   if( !tmps ) {
     return sn;
   }

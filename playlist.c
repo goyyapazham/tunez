@@ -1,57 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include "songz.h"
 #include "playlist.h"
 
-song_node *playlist = 0;
+song_node *table[26];
 
 // ================== ADD    FXNS ==================
 //add song to library in correct order
 void add_song( char s[], char a[] ) {
-  playlist = insert(playlist, s, a);
   printf("adding %s - %s...\n", a, s);
+  char letter = a[0]-97;
+  table[letter] = insert(table[letter], s, a);
 }
 // ================== ADD    FXNS ==================
-
 
 
 
 // ================== SEARCH FXNS ==================
 //print specified song, if it exists
-void find_song(char s[]) {
-  printf("looking for %s...", s);
-  song_node *key = find_Song(playlist, s);
-  if(key)
-    printf("\nfound %s - %s", key->artist, key->song);
-  printf("\n\n");
+song_node * find_song(char s[]) {
+  int i=0;
+  song_node *tmp = 0;
+  while(!tmp && i++ < 26)
+    tmp = find_Song(table[i], s, "");
+  print(tmp);
+  return tmp;
 }
 //print songs by specified artist, if it exists
-void find_artist(char a[]) {
-  printf("looking for %s...", a);
-  find_a(a, "found ");
-}
-void find_a(char a[], char f[]) {
-  song_node *key = find_Artist(playlist, a);
-  if(key)
-    while(strcmp(a, key->artist) == 0) {
-      printf("\n%s%s - %s", f, key->artist, key->song);
-      key = key->next;
-    }
-  printf("\n\n");
-}
-//return ptr to first song by first artist beginning with specified letter
-song_node * find_l(char l) {
-  song_node *tmp = playlist;
-  while( tmp->next ) {
-    if( strncmp(&l, tmp->artist, 1) == 0 )
-      return tmp;
-    tmp = tmp->next;
-  }
-  printf("\nLetter not found.");
-  return 0;
-  
+song_node * find_artist(char a[]) {
+  song_node *tmp = table[a[0]-97];
+  tmp = find_Artist(tmp, a);
+  return tmp;
 }
 // ================== SEARCH FXNS ==================
 
@@ -61,35 +40,44 @@ song_node * find_l(char l) {
 //print all entries under a certain letter
 void print_letter( char l ) {
   printf("%c list:", l);
-  song_node *tmp = find_l(l);
-  while(tmp && strncmp(&l, tmp->artist, 1) == 0) {
-    printf("\n* %s - %s", tmp->artist, tmp->song);
-    tmp = tmp->next;
-  }
+  print_list(table[l-97]);
   printf("\n\n");
 }
 //print all entries from a certain artist
 void print_artist( char a[] ) {
-  printf("%s list:", a);
-  find_a(a, "* ");
+  printf("%s list:\n", a);
+  song_node *l = find_artist(a);
+  while(l && strncmp(a, l->artist, 1) == 0) {
+    if(strcmp(l->artist, a) == 0)
+      printf("* %s - %s\n", l->artist, l->song);
+    l = l->next;
+  }
+  printf("\n");
 }
 //print entire list
 void print_library() {
-  print_list(playlist);
+  printf("\nyour library:");
+  int i=0;
+  while(i++ < 26)
+    print_list(table[i]);
 }
 //print shuffled list
 void shuffle() {
   printf("shuffling playlist...\n");
-  song_node *tmp = playlist;
-  song_node *tmp2 = 0;
-  while(tmp) {
-    tmp2 = insert_front(tmp2, tmp->song, tmp->artist);
-    tmp = tmp->next;
+  //deep copy table into more easily shuffle-able songlist
+  song_node *tmp = 0; int i=0;
+  while(i++ < 26) {
+    song_node *a = table[i];
+    while(a) {
+      tmp = insert_front(tmp, a->song, a->artist);
+      a = a->next;
+    }
   }
-  while(tmp2) {
-    song_node *rand = find_random(tmp2);
+  //shuffle/whittle down songlist
+  while(tmp) {
+    song_node *rand = find_random(tmp);
     printf("%s - %s\n", rand->artist, rand->song);
-    tmp2 = remove_song(tmp2, rand->song, rand->artist);
+    tmp = remove_song(tmp, rand->song, rand->artist);
   }
   printf("\n");
 }
@@ -97,15 +85,17 @@ void shuffle() {
 
 
 
-
 // ================== DELETE FXNS ==================
 //delete specified song
 void delete_song( char s[], char a[] ) {
-  printf("\ndeleting %s - %s...", a, s);
-  playlist = remove_song(playlist, s, a);
+  printf("\n\ndeleting %s - %s...", a, s);
+  table[a[0]-97] = remove_song(table[a[0]-97], s, a);
+  print_library();
 }
 //delete entire library
 void delete_library() {
-  playlist = free_list(playlist);
+  int i=0;
+  while(i++ < 26)
+    table[i] = free_list(table[i]);
 }
 // ================== DELETE FXNS ==================
