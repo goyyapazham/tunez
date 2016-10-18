@@ -3,8 +3,6 @@
 #include <string.h>
 #include "playlist.h"
 
-song_node *table[26];
-
 // ================== ADD    FXNS ==================
 //add song to library in correct order
 void add_song( char s[], char a[] ) {

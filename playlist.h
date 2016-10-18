@@ -1,5 +1,7 @@
 #include "songlist.h"
 
+song_node *table[26];
+
 // ================== ADD    FXNS ==================
 //add song to library in correct order
 void add_song( char song[], char artist[] ); //DONE

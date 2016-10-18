@@ -43,7 +43,7 @@ int main() {
   */
     
   //TESTING PRINT FXNS
-  printf("----------- TESTING PRINT_LETTER -----------\n");
+  printf("\n----------- TESTING PRINT_LETTER -----------\n");
   print_letter('b');
   print_letter('o');
   print_letter('s');
@@ -53,7 +53,7 @@ int main() {
   print_artist("beyonce");
   print_artist("outkast");
   print_artist("the beatles");
-  printf("----------- TESTING SHUFFLE -----------\n");
+  printf("\n----------- TESTING SHUFFLE -----------\n");
   shuffle();
   shuffle();
   shuffle();
